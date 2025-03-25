@@ -21,19 +21,19 @@ public class GithubService {
         return githubApi.getRepositories(username)
                 .onFailure(WebApplicationException.class)
                 .transform(ex -> {
-                    if (((WebApplicationException)ex).getResponse().getStatus() == 404)
+                    if (((WebApplicationException) ex).getResponse().getStatus() == 404)
                         return new UserNotFoundException(username);
                     return ex;
                 })
                 .onItem().transformToMulti(Multi.createFrom()::iterable)
-                .filter(repo -> !repo.fork)
+                .filter(repo -> !repo.isFork())
                 .onItem().transformToUniAndMerge(repo ->
-                        githubApi.getBranches(username, repo.name)
+                        githubApi.getBranches(username, repo.getName())
                                 .map(branches -> new RepositoryResponse(
-                                        repo.name,
-                                        repo.owner.login,
+                                        repo.getName(),
+                                        repo.getOwner().getLogin(),
                                         branches.stream()
-                                                .map(b -> new BranchDto(b.name, b.commit.sha))
+                                                .map(b -> new BranchDto(b.getName(), b.getCommit().getSha()))
                                                 .toList()
                                 ))
                 )
