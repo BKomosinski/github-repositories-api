@@ -5,7 +5,6 @@ Prosta aplikacja REST API, która zwraca listę repozytoriów GitHub użytkownik
 Wykonana w technologii:
 - Java 21
 - Quarkus 3
-- JUnit 5
 
 ## Uruchomienie aplikacji
 
@@ -97,16 +96,6 @@ Przykład odpowiedzi, gdy użytkownik nie istnieje (404 Not Found):
 }
 ```
 
-## Uruchomienie testów integracyjnych
-
-Testy uruchamiasz za pomocą polecenia:
-
-```
-mvn test
-```
-
-Testy integracyjne wykonują prawdziwe zapytania do GitHub API (bez użycia mocków).
-
 ## Struktura projektu
 
 ```
@@ -139,8 +128,7 @@ Wykorzystane jest oficjalne API GitHub w wersji v3:
 
 ## Ważne uwagi dodatkowe
 
-- Aplikacja nie obsługuje paginacji (zgodnie z wymaganiami zadania).
-- Testy integracyjne wykonują rzeczywiste zapytania do GitHub API, więc może wystąpić limitowanie API (60 zapytań na godzinę bez tokena autoryzacyjnego).
+- Aplikacja nie obsługuje paginacji.
 
 **Autor rozwiązania:**  
 Bartłomiej Komosiński
