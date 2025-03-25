@@ -8,10 +8,13 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import org.eclipse.microprofile.rest.client.annotation.ClientHeaderParam;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 import java.util.List;
 
 @RegisterRestClient(configKey = "github-api")
+// 🔐 Dodajemy Authorization nagłówek
+@ClientHeaderParam(name = "Authorization", value = "token ${rest-client.github-api.token}")
 public interface GithubApiConfig {
 
     @GET
