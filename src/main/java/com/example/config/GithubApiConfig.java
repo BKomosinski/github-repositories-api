@@ -13,7 +13,6 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 import java.util.List;
 
 @RegisterRestClient(configKey = "github-api")
-// 🔐 Dodajemy Authorization nagłówek
 @ClientHeaderParam(name = "Authorization", value = "token ${rest-client.github-api.token}")
 public interface GithubApiConfig {
 
